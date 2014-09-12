@@ -16,6 +16,7 @@ myLayers.Tracking.width = 640
 menu = myLayers["menu"]
 menu2 = myLayers["menu2"]
 unratedAlert = myLayers["unratedAlert"]
+unratedAlert2 = myLayers["unratedAlert2"]
 myWinesScreen = myLayers["myWinesScreen"]
 nextShipmentScreen = myLayers["nextShipmentScreen"]
 nextShipment = myLayers["nextShipment"]
@@ -205,7 +206,9 @@ menu2.on Events.TouchStart, ->
 nextShipment.on Events.TouchStart, ->
 	openShipment()
 myWines.on Events.TouchStart, ->
-	openMyWines()		
+	if nextShipmentActive & isAnUnratedWine == false then utils.delay 1, -> slideToReds()
+	if nextShipmentActive & isAnUnratedWine then utils.delay 1, -> slideToUnrated()
+	openMyWines()
 next.on Events.TouchStart, ->
 	openShipmentDetails()
 xClose.on Events.TouchStart, ->
@@ -222,15 +225,18 @@ notForMe.on Events.TouchStart, ->
 	cancelRateMenu()
 	utils.delay(timeBetween, notForMe())
 	unratedAlert.opacity = 0
+	utils.delay 1, -> unratedAlert2.opacity = 0
 itWasOkay.on Events.TouchStart, ->
 	cancelRateMenu()
 	utils.delay(timeBetween, itWasOkay())
 	unratedAlert.opacity = 0
+	utils.delay 2.6, -> unratedAlert2.opacity = 0
 iLovedIt.on Events.TouchStart, ->
 	cancelRateMenu()
 	utils.delay(timeBetween, iLovedIt())
 	utils.delay 1, -> regionNotification()
 	unratedAlert.opacity = 0
+	utils.delay 2.6, -> unratedAlert2.opacity = 0
 
 
 rate2.on Events.TouchStart, ->
@@ -438,14 +444,13 @@ notForMe = ->
 					y: notForMeText.originalFrame.y
 				time: phraseAnimationTime
 			storedPhrase = notForMeText
-	utils.delay 1.5, ->
+	utils.delay .7, ->
 		wineCell.animate
 			properties:
 				x: wineCell.originalFrame.x - 640
 			time: filtersTime
 			curve: 'bezier-curve'
 		isAnUnratedWine = false
-
 
 notForMe2 = ->
 	#fade out the stored symbol and fade in selected symbol
@@ -511,7 +516,7 @@ itWasOkay = ->
 					y: itWasOkayText.originalFrame.y
 				time: phraseAnimationTime
 			storedPhrase = itWasOkayText
-	utils.delay 1.5, ->
+	utils.delay .7, ->
 		wineCell.animate
 			properties:
 				x: wineCell.originalFrame.x - 640
@@ -584,7 +589,7 @@ iLovedIt = ->
 					y: iLovedItText.originalFrame.y
 				time: phraseAnimationTime
 			storedPhrase = iLovedItText
-	utils.delay 1.5, ->
+	utils.delay .7, ->
 		wineCell.animate
 			properties:
 				x: wineCell.originalFrame.x - 640
@@ -834,6 +839,7 @@ openMyWines = ->
 	myWinesSelected.opacity = 1
 	nextShipmentScreen.y = offBottomY
 	myWinesScreen.bringToFront()
+
 	if checkoutActive then myWinesScreen.animate
 		properties: 
 			y: 0

@@ -18,7 +18,10 @@ Navigation Screen:
 
 - In this Mockup, one can navigate to only two screens 'Next Shipment' and 'My Wines' screens.
 - Notice that their is an unrated wine indicator next to 'My Wines'. This disappears when the unrated wine is rated.
-- Also notice that when there is an unrated wine, touching 'My Wines' takes you 'My Wines' with the 'Unrated' filter applied. When there are no unrated wines. This button takes you to the 'My Wines' with the 'Reds' filter applied. The concept is that, if there are no unrated wines, the 'My Wines' button should not take the user to the 'Unrated' filter because there is nothing to display. In practice, the unrated filter, might all together disappear (I lean towards not doing this, it might mess up a users' mental models of those filters.) Another question: when 'My Wines' is touched and there are no Unrated wines, which filter should be applied for you. It could be random, however, I think it should take the user to the 'Loved it' filter. Doing that, would be positive for the user because it will likely create an 'Oh yes! That one - I think I want another' moment in the user.
+- Also notice that when there are unrated wines, touching 'My Wines' takes you 'My Wines' with the 'Unrated' filter applied. When there are no unrated wines to display, this button takes you to the 'My Wines' with the last filter the user applied (we may want it to always take you to the 'Loved it' filter.) 
+Two subtle behaviors to notice:
+If the last filter applied was the unrated one but there are no unrated wines to display, it takes the user to the unrated filter (because it's the last selected one) and then quickly moves them to another filter (in this case, the 'Reds' filter) 
+If the last filter applied was not the unrated one and there ARE unrated wines to display, the user lands on the last filter applied and then is quickly moved to the 'Unrated' filter.
 
 
 My Wines Screen:
