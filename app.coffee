@@ -5,9 +5,6 @@ myLayers = Framer.Importer.load "imported/2014.9"
 Utils.domLoadScriptSync("framer/library.js")
 Framer.Shortcuts.initialize myLayers
 
-# myLayers.Content.style.overflow = "hidden"
-# myLayers.Content.height = 1136	
-
 myLayers.Tracking.style.overflow = "hidden"
 myLayers.Tracking.height = 1136	
 myLayers.Tracking.width = 640
