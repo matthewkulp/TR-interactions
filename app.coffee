@@ -1,5 +1,5 @@
-# This imports all the layers for "2014.9" into 20149Layers
-myLayers = Framer.Importer.load "imported/2014.9"
+# This imports all the layers for "2014.9.4_Next-Shipment-3-Public" into 201494_NextShipment3PublicLayers
+myLayers = Framer.Importer.load "imported/2014.9.4_Next-Shipment-3-Public"
 
 # Use the Framer library https://github.com/facebook/shortcuts-for-framer
 Utils.domLoadScriptSync("framer/library.js")
