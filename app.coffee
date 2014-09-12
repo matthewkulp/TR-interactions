@@ -1,5 +1,8 @@
+# This imports all the layers for "2014.9" into 20149Layers
+myLayers = Framer.Importer.load "imported/2014.9"
+
 # This imports all the layers for "2014.9.4_Next-Shipment-3-Public" into 201494_NextShipment3PublicLayers
-myLayers = Framer.Importer.load "imported/2014.9.4_Next-Shipment-3-Public"
+# myLayers = Framer.Importer.load "imported/2014.9.4_Next-Shipment-3-Public"
 
 # Use the Framer library https://github.com/facebook/shortcuts-for-framer
 Utils.domLoadScriptSync("framer/library.js")
@@ -117,7 +120,7 @@ navTension = 100
 navFriction = 19
 navVelocity = 4
 
-redsDisplaced = filtersRedsBold.originalFrame.x + 163
+redsDisplaced = filtersRedsBold.originalFrame.x + 227
 filtersRedsBold.x = redsDisplaced
 reds.opacity = 0
 wineCellRedDisplaced = wineCellRed.originalFrame.x + 640
@@ -299,7 +302,7 @@ slideToReds = ->
 		curve: 'bezier-curve'
 	filtersUnratedBold.animate
 		properties:
-			x: -158
+			x: 5
 		time: filtersTime
 		curve: 'bezier-curve'
 	wineCellRed.animate
