@@ -4,10 +4,18 @@ myLayers = Framer.Importer.load "imported/2014.9"
 # Use the Framer library https://github.com/facebook/shortcuts-for-framer
 Utils.domLoadScriptSync("framer/library.js")
 Framer.Shortcuts.initialize myLayers
-	
+
+# myLayers.Content.style.overflow = "hidden"
+# myLayers.Content.height = 1136	
+
+myLayers.Tracking.style.overflow = "hidden"
+myLayers.Tracking.height = 1136	
+myLayers.Tracking.width = 640
+
 # Setting objects
 menu = myLayers["menu"]
 menu2 = myLayers["menu2"]
+unratedAlert = myLayers["unratedAlert"]
 myWinesScreen = myLayers["myWinesScreen"]
 nextShipmentScreen = myLayers["nextShipmentScreen"]
 nextShipment = myLayers["nextShipment"]
@@ -60,17 +68,21 @@ notForMe2 = myLayers["notForMe2"]
 cancel2 = myLayers["cancel2"]
 escapeTap3 = myLayers["escapeTap3"]
 
-cancelUnswap = myLayers["cancelUnswap"]
 regionUnlocked = myLayers["regionUnlocked"]
 checkout = myLayers["checkout"]
 checkout2 = myLayers["checkout2"]
+swapNotification = myLayers["swapNotification"]
+swapIn = myLayers["swapIn"]
 buyMenu = myLayers["buyMenu"]
+
+cancelUnswap = myLayers["cancelUnswap"]
 undo = myLayers["undo"]
 youSure = myLayers["youSure"]
 swappedWine = myLayers["swappedWine"]
 notSwappedWines = myLayers["notSwappedWines"]
 yesUnswap = myLayers["yesUnswap"]
 newWineCell = myLayers["newWineCell"]
+
 invite = myLayers["invite"]
 filtersRedsBold = myLayers["filtersRedsBold"]
 filtersUnratedBold = myLayers["filtersUnratedBold"]
@@ -83,6 +95,7 @@ wineCell = myLayers["wineCell"]
 buttonActive = false
 checkoutActive = false
 isAnUnratedWine = true
+nextShipmentActive = true
 
 storedSymbol = frown
 storedPhrase = tapToRateText
@@ -140,6 +153,7 @@ daysLeft.y = daysLeft.originalFrame.y - 45
 checkout.opacity = 0
 checkout2.opacity = 0
 regionUnlocked.opacity = 0
+swapNotification.opacity = 0
 
 buyMenu.opacity = 0
 buyMenu.y = offBottomY
@@ -207,13 +221,16 @@ cancel.on Events.TouchStart, ->
 notForMe.on Events.TouchStart, ->
 	cancelRateMenu()
 	utils.delay(timeBetween, notForMe())
+	unratedAlert.opacity = 0
 itWasOkay.on Events.TouchStart, ->
 	cancelRateMenu()
 	utils.delay(timeBetween, itWasOkay())
+	unratedAlert.opacity = 0
 iLovedIt.on Events.TouchStart, ->
 	cancelRateMenu()
 	utils.delay(timeBetween, iLovedIt())
 	utils.delay 1, -> regionNotification()
+	unratedAlert.opacity = 0
 
 
 rate2.on Events.TouchStart, ->
@@ -243,6 +260,9 @@ escapeTap2.on Events.TouchStart, ->
 buyOptions.on Events.TouchStart, ->
 	cancelBuyMenu()
 	openCheckout()
+swapIn.on Events.TouchStart, ->
+	cancelBuyMenu()
+	openSwapNotification()
 
 
 buy2.on Events.TouchStart, ->
@@ -607,7 +627,6 @@ iLovedIt2 = ->
 	
 			
 regionNotification = ->
-	regionUnlocked.opacity = 1
 	myWinesScreen.animate
 		properties:
 			y: 0
@@ -633,6 +652,76 @@ regionNotification = ->
 				properties:
 					y: invite.originalFrame.y
 				time:.4		
+
+regionNotification = ->
+	animateCloseRegionNotification = -> 
+		closeRegionNotification = myWinesScreen.animate
+			properties:
+				y: - notificationHeight
+			time: .4
+			curve: 'bezier-curve'
+		closeRegionNotification.on 'end', ->
+			regionUnlocked.animate
+				properties:
+					opacity: 0
+				time: .1
+			invite.animate
+				properties:
+					y: invite.originalFrame.y
+				time:.4	
+	animateOpenRegionNotification = ->
+		regionUnlocked.opacity = 1			
+		myWinesScreen.animate
+			properties:
+				y: 0
+			time: .4
+			curve: 'bezier-curve'
+		invite.animate
+			properties:
+				y: invite.originalFrame.y - notificationHeight
+			time: .4
+							
+	if checkoutActive then utils.delay 1, -> regionUnlocked.opacity = 1
+	else animateOpenRegionNotification()
+
+	utils.delay 4.4, ->
+		if checkoutActive then regionUnlocked.opacity = 0
+		else animateCloseRegionNotification()
+				
+openSwapNotification = ->
+	animateCloseSwapNotification = -> 
+		closeSwapNotification = myWinesScreen.animate
+			properties:
+				y: - notificationHeight
+			time: .4
+			curve: 'bezier-curve'
+		closeSwapNotification.on 'end', ->
+			swapNotification.animate
+				properties:
+					opacity: 0
+				time: .1
+			invite.animate
+				properties:
+					y: invite.originalFrame.y
+				time:.4	
+	animateOpenSwapNotification = ->
+		swapNotification.opacity = 1			
+		myWinesScreen.animate
+			properties:
+				y: 0
+			time: .4
+			curve: 'bezier-curve'
+		invite.animate
+			properties:
+				y: invite.originalFrame.y - notificationHeight
+			time: .4
+							
+	if checkoutActive then utils.delay 1, -> swapNotification.opacity = 1
+	else animateOpenSwapNotification()
+
+	utils.delay 4.4, ->
+		if checkoutActive then swapNotification.opacity = 0
+		else animateCloseSwapNotification()
 		
 			
 # Opening the rate menu
@@ -676,6 +765,13 @@ cancelRateMenu2 = ->
 # Shipment opening and closing.		
 openShipment = ->
 	buttonActive = false
+	
+	setTrailDaysLeft = -> 
+		trail.y = 48 
+		daysLeft.opacity = 1
+	if nextShipmentActive then setTrailDaysLeft()
+	else chuteIntro()
+	
 	nextShipmentSelected.opacity = 1
 	nextShipment.opacity = 0	
 	myWines.opacity = 1
@@ -708,7 +804,7 @@ openShipment = ->
 			tension: navTension
 			friction: navFriction
 			velocity: navVelocity
-	chuteIntro()
+	nextShipmentActive = true
 
 
 minimizeShipment = ->
@@ -731,6 +827,7 @@ minimizeShipment = ->
 # MyWines opening and closing.
 openMyWines = ->
 	buttonActive = false	
+	nextShipmentActive = false
 	nextShipmentSelected.opacity = 0
 	nextShipment.opacity = 1
 	myWines.opacity = 0

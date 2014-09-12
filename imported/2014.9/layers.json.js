@@ -1,5 +1,5 @@
 window.__imported__ = window.__imported__ || {};
-window.__imported__["2014.9.4_Next-Shipment-3/layers.json.js"] = [
+window.__imported__["2014.9.4_Next-Shipment-3-Public/layers.json.js"] = [
   {
     "maskFrame" : null,
     "visible" : true,
@@ -152,7 +152,7 @@ window.__imported__["2014.9.4_Next-Shipment-3/layers.json.js"] = [
                 "y" : 0,
                 "x" : -1,
                 "width" : 641,
-                "height" : 1136
+                "height" : 167
               }
             },
             "imageType" : "png",
@@ -160,7 +160,7 @@ window.__imported__["2014.9.4_Next-Shipment-3/layers.json.js"] = [
               "y" : 0,
               "x" : -1,
               "width" : 641,
-              "height" : 1136
+              "height" : 167
             },
             "name" : "scrollVeil2"
           },
@@ -814,6 +814,31 @@ window.__imported__["2014.9.4_Next-Shipment-3/layers.json.js"] = [
           {
             "maskFrame" : null,
             "visible" : true,
+            "id" : "BBEB0117-D0DB-44DD-A98E-0E1609FA9CB6",
+            "children" : [
+
+            ],
+            "image" : {
+              "path" : "images\/swapIn-BBEB0117-D0DB-44DD-A98E-0E1609FA9CB6.png",
+              "frame" : {
+                "y" : 925,
+                "x" : 16,
+                "width" : 608,
+                "height" : 87
+              }
+            },
+            "imageType" : "png",
+            "layerFrame" : {
+              "y" : 925,
+              "x" : 16,
+              "width" : 608,
+              "height" : 87
+            },
+            "name" : "swapIn"
+          },
+          {
+            "maskFrame" : null,
+            "visible" : true,
             "id" : "12E1D2DF-0405-425A-A117-F70E59717CFC",
             "children" : [
 
@@ -824,7 +849,7 @@ window.__imported__["2014.9.4_Next-Shipment-3/layers.json.js"] = [
                 "y" : 748,
                 "x" : 16,
                 "width" : 608,
-                "height" : 264
+                "height" : 206
               }
             },
             "imageType" : "png",
@@ -832,7 +857,7 @@ window.__imported__["2014.9.4_Next-Shipment-3/layers.json.js"] = [
               "y" : 748,
               "x" : 16,
               "width" : 608,
-              "height" : 264
+              "height" : 206
             },
             "name" : "buyOptions"
           }
@@ -1158,6 +1183,31 @@ window.__imported__["2014.9.4_Next-Shipment-3/layers.json.js"] = [
         "visible" : true,
         "id" : "C17740A6-5FBC-4561-91B5-285D535E37A9",
         "children" : [
+          {
+            "maskFrame" : null,
+            "visible" : true,
+            "id" : "3BAF5238-3EAC-42AD-B19E-0DFFAF563F2B",
+            "children" : [
+
+            ],
+            "image" : {
+              "path" : "images\/swapNotification-3BAF5238-3EAC-42AD-B19E-0DFFAF563F2B.png",
+              "frame" : {
+                "y" : 0,
+                "x" : 0,
+                "width" : 640,
+                "height" : 84
+              }
+            },
+            "imageType" : "png",
+            "layerFrame" : {
+              "y" : 0,
+              "x" : 0,
+              "width" : 640,
+              "height" : 84
+            },
+            "name" : "swapNotification"
+          },
           {
             "maskFrame" : null,
             "visible" : true,
@@ -2348,6 +2398,31 @@ window.__imported__["2014.9.4_Next-Shipment-3/layers.json.js"] = [
           {
             "maskFrame" : null,
             "visible" : true,
+            "id" : "AB008414-1B2A-4928-992D-3A9E6EAA159E",
+            "children" : [
+
+            ],
+            "image" : {
+              "path" : "images\/unratedAlert-AB008414-1B2A-4928-992D-3A9E6EAA159E.png",
+              "frame" : {
+                "y" : 519,
+                "x" : 59,
+                "width" : 72,
+                "height" : 72
+              }
+            },
+            "imageType" : "png",
+            "layerFrame" : {
+              "y" : 519,
+              "x" : 59,
+              "width" : 72,
+              "height" : 72
+            },
+            "name" : "unratedAlert"
+          },
+          {
+            "maskFrame" : null,
+            "visible" : true,
             "id" : "498299BB-9FCD-43CD-BBDA-A8DD01E6B678",
             "children" : [
               {
@@ -2622,18 +2697,18 @@ window.__imported__["2014.9.4_Next-Shipment-3/layers.json.js"] = [
         "image" : {
           "path" : "images\/nav-98536A85-9432-487B-A41E-40B4E6565640.png",
           "frame" : {
-            "y" : 0,
-            "x" : 0,
-            "width" : 640,
-            "height" : 1031
+            "y" : -2,
+            "x" : -2,
+            "width" : 644,
+            "height" : 1035
           }
         },
         "imageType" : "png",
         "layerFrame" : {
-          "y" : 0,
-          "x" : 0,
-          "width" : 640,
-          "height" : 1031
+          "y" : -2,
+          "x" : -2,
+          "width" : 644,
+          "height" : 1035
         },
         "name" : "nav"
       }
